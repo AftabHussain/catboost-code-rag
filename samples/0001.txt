@@ -1,0 +1,1 @@
+This snippet loads Zillow data, cleans rows missing the price, selects a few numeric features, trains a CatBoost regression model on those features, and generates price predictions.

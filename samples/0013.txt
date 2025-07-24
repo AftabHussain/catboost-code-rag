@@ -1,0 +1,1 @@
+Creates a binary has_view column from the Zillow view score and trains CatBoost on filtered homes.

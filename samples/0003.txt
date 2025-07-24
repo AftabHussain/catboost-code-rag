@@ -1,0 +1,1 @@
+This code handles categorical features by converting 'zipcode' to string, splits the data into training and test sets, and trains a CatBoost model with the categorical feature specified for better handling.

@@ -1,0 +1,122 @@
+code,description
+"import pandas as pd
+from sklearn.preprocessing import LabelEncoder
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_16.csv')
+df['condition'] = LabelEncoder().fit_transform(df['condition'])
+
+X = df[['bedrooms', 'condition', 'sqft_living']]
+y = df['price']
+
+model = CatBoostRegressor(verbose=0)
+model.fit(X, y)
+",Sample 16: Encodes 'condition' feature numerically and uses it to train a CatBoost model.
+"import pandas as pd
+from sklearn.model_selection import train_test_split
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_17.csv')
+df['zipcode'] = df['zipcode'].astype(str)
+
+X = df[['bedrooms', 'bathrooms', 'zipcode']]
+y = df['price']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=17)
+
+model = CatBoostRegressor(cat_features=['zipcode'], verbose=0)
+model.fit(X_train, y_train)
+",Sample 17: Trains CatBoost using a zipcode categorical feature and performs a 70-30 train-test split.
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_18.csv')
+df['luxury'] = (df['price'] > 1000000).astype(int)
+
+X = df[['sqft_living', 'luxury']]
+y = df['price']
+
+model = CatBoostRegressor(depth=10, iterations=250, verbose=0)
+model.fit(X, y)
+",Sample 18: Adds a 'luxury' binary flag for high-value homes and includes it as a model feature.
+"import pandas as pd
+from sklearn.impute import SimpleImputer
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_19.csv')
+imputer = SimpleImputer(strategy='median')
+df[['bathrooms']] = imputer.fit_transform(df[['bathrooms']])
+
+X = df[['bedrooms', 'bathrooms', 'sqft_lot']]
+y = df['price']
+
+model = CatBoostRegressor(verbose=0)
+model.fit(X, y)
+",Sample 19: Uses sklearn's SimpleImputer to fill missing bathroom values with the median.
+"import pandas as pd
+
+df = pd.read_csv('zillow_sample_20.csv')
+df['total_rooms'] = df['bedrooms'] + df['bathrooms']
+df['area_per_room'] = df['sqft_living'] / df['total_rooms'].replace(0, 1)
+",Sample 20: Engineers features for total rooms and area per room to evaluate home compactness.
+"import pandas as pd
+from catboost import CatBoostRegressor
+from sklearn.model_selection import train_test_split
+
+df = pd.read_csv('zillow_sample_21.csv')
+df['zipcode'] = df['zipcode'].astype(str)
+df['view'] = df['view'].fillna(0)
+
+X = df[['zipcode', 'view', 'sqft_living']]
+y = df['price']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25)
+
+model = CatBoostRegressor(cat_features=['zipcode'], iterations=150, verbose=0)
+model.fit(X_train, y_train)
+",Sample 21: Trains CatBoost using categorical 'zipcode' and filled-in 'view' scores.
+"import pandas as pd
+
+df = pd.read_csv('zillow_sample_22.csv')
+df['price_bucket'] = pd.cut(df['price'], bins=[0, 250000, 500000, 750000, 1000000, float('inf')])
+price_counts = df['price_bucket'].value_counts()
+",Sample 22: Groups home prices into categorical bins for analysis and distribution understanding.
+"import pandas as pd
+from sklearn.model_selection import KFold
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_23.csv')
+kf = KFold(n_splits=4, shuffle=True, random_state=42)
+
+X = df[['sqft_living', 'bedrooms']]
+y = df['price']
+
+for train_idx, test_idx in kf.split(X):
+    X_train, X_test = X.iloc[train_idx], X.iloc[test_idx]
+    y_train, y_test = y.iloc[train_idx], y.iloc[test_idx]
+    model = CatBoostRegressor(verbose=0)
+    model.fit(X_train, y_train)
+",Sample 23: Performs 4-fold cross-validation manually to train and validate CatBoost models.
+"import pandas as pd
+
+df = pd.read_csv('zillow_sample_24.csv')
+df['year_built'] = pd.to_numeric(df['year_built'], errors='coerce')
+df['house_age'] = 2024 - df['year_built']
+df = df[df['house_age'] > 0]
+",Sample 24: Cleans up year_built and calculates house age as a new feature.
+"import pandas as pd
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_25.csv')
+X = df[['sqft_living', 'bedrooms', 'bathrooms']]
+y = df['price']
+
+pipeline = Pipeline([
+    ('scaler', StandardScaler()),
+    ('model', CatBoostRegressor(verbose=0))
+])
+
+pipeline.fit(X, y)
+",Sample 25: Builds a pipeline that scales features before training a CatBoost regression model.

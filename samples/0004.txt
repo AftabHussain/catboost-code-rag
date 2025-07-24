@@ -1,0 +1,1 @@
+This snippet focuses on data cleaning by removing duplicate entries, converting date columns to datetime objects, creating a house age feature, and dropping missing target values.

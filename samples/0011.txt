@@ -1,0 +1,1 @@
+This sample applies MinMax normalization to square footage features before feeding them to CatBoost.

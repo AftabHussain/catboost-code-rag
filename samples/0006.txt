@@ -1,0 +1,1 @@
+This sample applies a log transformation to stabilize price variance and trains CatBoost on key numerical features.

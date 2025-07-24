@@ -1,0 +1,1 @@
+Removes non-useful columns, creates a normalized bath_per_bed, and filters unrealistic ratios.

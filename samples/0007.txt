@@ -1,0 +1,1 @@
+Removes large outliers in sqft_living, engineers a bed_bath_ratio, and ensures all required fields are present.

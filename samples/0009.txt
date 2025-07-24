@@ -1,0 +1,1 @@
+This example uses CatBoost’s Pool object to define categorical features explicitly for faster training.

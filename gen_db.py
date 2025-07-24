@@ -1,0 +1,23 @@
+from langchain_community.vectorstores import FAISS
+from langchain.schema import Document
+from langchain_huggingface import HuggingFaceEmbeddings
+import pandas as pd
+
+# Load CSV data
+df = pd.read_csv('samples/zillow_catboost_samples_16_to_25.csv')
+
+# Prepare documents list by combining code and description columns
+documents = [
+            Document(page_content=f"{row['code']} {row['description']}")
+                for _, row in df.iterrows()
+                ]
+
+# Initialize HuggingFace embedding model (ensure langchain-huggingface installed)
+embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+
+# Create FAISS vectorstore from documents and embeddings
+vectorstore = FAISS.from_documents(documents, embedding_model)
+
+# Save the vectorstore locally
+vectorstore.save_local("rag_vectorstore_db")
+

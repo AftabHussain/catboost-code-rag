@@ -1,0 +1,901 @@
+code,description
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_26.csv')
+df = df.dropna(subset=['bedrooms', 'bathrooms', 'price'])
+
+X = df[['bedrooms', 'bathrooms']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=100, depth=8, learning_rate=0.05, verbose=0)
+model.fit(X, y)
+","Sample 26: Trains a CatBoost model on Zillow data using features ['bedrooms', 'bathrooms'], with 100 iterations, depth 8, and learning rate 0.05."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_27.csv')
+df = df.dropna(subset=['bedrooms', 'floors', 'view', 'price'])
+
+X = df[['bedrooms', 'floors', 'view']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=200, depth=4, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 27: Trains a CatBoost model on Zillow data using features ['bedrooms', 'floors', 'view'], with 200 iterations, depth 4, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_28.csv')
+df = df.dropna(subset=['bedrooms', 'bathrooms', 'price'])
+
+X = df[['bedrooms', 'bathrooms']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=200, depth=4, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 28: Trains a CatBoost model on Zillow data using features ['bedrooms', 'bathrooms'], with 200 iterations, depth 4, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_29.csv')
+df = df.dropna(subset=['zipcode', 'condition', 'price'])
+df['zipcode'] = df['zipcode'].astype(str)
+X = df[['zipcode', 'condition']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=200, depth=8, learning_rate=0.05, verbose=0)
+model.fit(X, y, cat_features=['zipcode', 'condition'])
+","Sample 29: Trains a CatBoost model on Zillow data using features ['zipcode', 'condition'], with 200 iterations, depth 8, and learning rate 0.05. Handles categorical features."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_30.csv')
+df = df.dropna(subset=['zipcode', 'condition', 'price'])
+df['zipcode'] = df['zipcode'].astype(str)
+X = df[['zipcode', 'condition']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=200, depth=8, learning_rate=0.1, verbose=0)
+model.fit(X, y, cat_features=['zipcode', 'condition'])
+","Sample 30: Trains a CatBoost model on Zillow data using features ['zipcode', 'condition'], with 200 iterations, depth 8, and learning rate 0.1. Handles categorical features."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_31.csv')
+df = df.dropna(subset=['bedrooms', 'bathrooms', 'price'])
+
+X = df[['bedrooms', 'bathrooms']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=50, depth=4, learning_rate=0.1, verbose=0)
+model.fit(X, y)
+","Sample 31: Trains a CatBoost model on Zillow data using features ['bedrooms', 'bathrooms'], with 50 iterations, depth 4, and learning rate 0.1."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_32.csv')
+df = df.dropna(subset=['sqft_basement', 'grade', 'price'])
+
+X = df[['sqft_basement', 'grade']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=50, depth=8, learning_rate=0.05, verbose=0)
+model.fit(X, y)
+","Sample 32: Trains a CatBoost model on Zillow data using features ['sqft_basement', 'grade'], with 50 iterations, depth 8, and learning rate 0.05."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_33.csv')
+df = df.dropna(subset=['bedrooms', 'bathrooms', 'price'])
+
+X = df[['bedrooms', 'bathrooms']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=200, depth=4, learning_rate=0.05, verbose=0)
+model.fit(X, y)
+","Sample 33: Trains a CatBoost model on Zillow data using features ['bedrooms', 'bathrooms'], with 200 iterations, depth 4, and learning rate 0.05."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_34.csv')
+df = df.dropna(subset=['bedrooms', 'bathrooms', 'price'])
+
+X = df[['bedrooms', 'bathrooms']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=200, depth=8, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 34: Trains a CatBoost model on Zillow data using features ['bedrooms', 'bathrooms'], with 200 iterations, depth 8, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_35.csv')
+df = df.dropna(subset=['sqft_living', 'sqft_lot', 'price'])
+
+X = df[['sqft_living', 'sqft_lot']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=200, depth=8, learning_rate=0.05, verbose=0)
+model.fit(X, y)
+","Sample 35: Trains a CatBoost model on Zillow data using features ['sqft_living', 'sqft_lot'], with 200 iterations, depth 8, and learning rate 0.05."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_36.csv')
+df = df.dropna(subset=['bedrooms', 'bathrooms', 'price'])
+
+X = df[['bedrooms', 'bathrooms']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=100, depth=4, learning_rate=0.05, verbose=0)
+model.fit(X, y)
+","Sample 36: Trains a CatBoost model on Zillow data using features ['bedrooms', 'bathrooms'], with 100 iterations, depth 4, and learning rate 0.05."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_37.csv')
+df = df.dropna(subset=['bedrooms', 'bathrooms', 'price'])
+
+X = df[['bedrooms', 'bathrooms']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=100, depth=8, learning_rate=0.05, verbose=0)
+model.fit(X, y)
+","Sample 37: Trains a CatBoost model on Zillow data using features ['bedrooms', 'bathrooms'], with 100 iterations, depth 8, and learning rate 0.05."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_38.csv')
+df = df.dropna(subset=['sqft_basement', 'grade', 'price'])
+
+X = df[['sqft_basement', 'grade']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=200, depth=8, learning_rate=0.05, verbose=0)
+model.fit(X, y)
+","Sample 38: Trains a CatBoost model on Zillow data using features ['sqft_basement', 'grade'], with 200 iterations, depth 8, and learning rate 0.05."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_39.csv')
+df = df.dropna(subset=['sqft_living', 'sqft_lot', 'price'])
+
+X = df[['sqft_living', 'sqft_lot']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=200, depth=6, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 39: Trains a CatBoost model on Zillow data using features ['sqft_living', 'sqft_lot'], with 200 iterations, depth 6, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_40.csv')
+df = df.dropna(subset=['bedrooms', 'bathrooms', 'price'])
+
+X = df[['bedrooms', 'bathrooms']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=100, depth=4, learning_rate=0.05, verbose=0)
+model.fit(X, y)
+","Sample 40: Trains a CatBoost model on Zillow data using features ['bedrooms', 'bathrooms'], with 100 iterations, depth 4, and learning rate 0.05."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_41.csv')
+df = df.dropna(subset=['bedrooms', 'floors', 'view', 'price'])
+
+X = df[['bedrooms', 'floors', 'view']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=200, depth=8, learning_rate=0.05, verbose=0)
+model.fit(X, y)
+","Sample 41: Trains a CatBoost model on Zillow data using features ['bedrooms', 'floors', 'view'], with 200 iterations, depth 8, and learning rate 0.05."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_42.csv')
+df = df.dropna(subset=['bedrooms', 'floors', 'view', 'price'])
+
+X = df[['bedrooms', 'floors', 'view']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=200, depth=4, learning_rate=0.05, verbose=0)
+model.fit(X, y)
+","Sample 42: Trains a CatBoost model on Zillow data using features ['bedrooms', 'floors', 'view'], with 200 iterations, depth 4, and learning rate 0.05."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_43.csv')
+df = df.dropna(subset=['bedrooms', 'bathrooms', 'price'])
+
+X = df[['bedrooms', 'bathrooms']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=50, depth=4, learning_rate=0.05, verbose=0)
+model.fit(X, y)
+","Sample 43: Trains a CatBoost model on Zillow data using features ['bedrooms', 'bathrooms'], with 50 iterations, depth 4, and learning rate 0.05."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_44.csv')
+df = df.dropna(subset=['bedrooms', 'bathrooms', 'price'])
+
+X = df[['bedrooms', 'bathrooms']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=50, depth=6, learning_rate=0.1, verbose=0)
+model.fit(X, y)
+","Sample 44: Trains a CatBoost model on Zillow data using features ['bedrooms', 'bathrooms'], with 50 iterations, depth 6, and learning rate 0.1."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_45.csv')
+df = df.dropna(subset=['bedrooms', 'floors', 'view', 'price'])
+
+X = df[['bedrooms', 'floors', 'view']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=150, depth=8, learning_rate=0.05, verbose=0)
+model.fit(X, y)
+","Sample 45: Trains a CatBoost model on Zillow data using features ['bedrooms', 'floors', 'view'], with 150 iterations, depth 8, and learning rate 0.05."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_46.csv')
+df = df.dropna(subset=['sqft_living', 'sqft_lot', 'price'])
+
+X = df[['sqft_living', 'sqft_lot']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=200, depth=6, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 46: Trains a CatBoost model on Zillow data using features ['sqft_living', 'sqft_lot'], with 200 iterations, depth 6, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_47.csv')
+df = df.dropna(subset=['bedrooms', 'floors', 'view', 'price'])
+
+X = df[['bedrooms', 'floors', 'view']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=100, depth=4, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 47: Trains a CatBoost model on Zillow data using features ['bedrooms', 'floors', 'view'], with 100 iterations, depth 4, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_48.csv')
+df = df.dropna(subset=['sqft_basement', 'grade', 'price'])
+
+X = df[['sqft_basement', 'grade']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=50, depth=4, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 48: Trains a CatBoost model on Zillow data using features ['sqft_basement', 'grade'], with 50 iterations, depth 4, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_49.csv')
+df = df.dropna(subset=['sqft_living', 'sqft_lot', 'price'])
+
+X = df[['sqft_living', 'sqft_lot']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=100, depth=6, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 49: Trains a CatBoost model on Zillow data using features ['sqft_living', 'sqft_lot'], with 100 iterations, depth 6, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_50.csv')
+df = df.dropna(subset=['sqft_living', 'sqft_lot', 'price'])
+
+X = df[['sqft_living', 'sqft_lot']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=150, depth=4, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 50: Trains a CatBoost model on Zillow data using features ['sqft_living', 'sqft_lot'], with 150 iterations, depth 4, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_51.csv')
+df = df.dropna(subset=['bedrooms', 'bathrooms', 'price'])
+
+X = df[['bedrooms', 'bathrooms']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=200, depth=4, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 51: Trains a CatBoost model on Zillow data using features ['bedrooms', 'bathrooms'], with 200 iterations, depth 4, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_52.csv')
+df = df.dropna(subset=['sqft_living', 'sqft_lot', 'price'])
+
+X = df[['sqft_living', 'sqft_lot']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=100, depth=8, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 52: Trains a CatBoost model on Zillow data using features ['sqft_living', 'sqft_lot'], with 100 iterations, depth 8, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_53.csv')
+df = df.dropna(subset=['sqft_living', 'sqft_lot', 'price'])
+
+X = df[['sqft_living', 'sqft_lot']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=100, depth=4, learning_rate=0.05, verbose=0)
+model.fit(X, y)
+","Sample 53: Trains a CatBoost model on Zillow data using features ['sqft_living', 'sqft_lot'], with 100 iterations, depth 4, and learning rate 0.05."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_54.csv')
+df = df.dropna(subset=['sqft_living', 'sqft_lot', 'price'])
+
+X = df[['sqft_living', 'sqft_lot']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=150, depth=8, learning_rate=0.1, verbose=0)
+model.fit(X, y)
+","Sample 54: Trains a CatBoost model on Zillow data using features ['sqft_living', 'sqft_lot'], with 150 iterations, depth 8, and learning rate 0.1."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_55.csv')
+df = df.dropna(subset=['sqft_living', 'sqft_lot', 'price'])
+
+X = df[['sqft_living', 'sqft_lot']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=150, depth=4, learning_rate=0.05, verbose=0)
+model.fit(X, y)
+","Sample 55: Trains a CatBoost model on Zillow data using features ['sqft_living', 'sqft_lot'], with 150 iterations, depth 4, and learning rate 0.05."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_56.csv')
+df = df.dropna(subset=['sqft_living', 'sqft_lot', 'price'])
+
+X = df[['sqft_living', 'sqft_lot']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=100, depth=4, learning_rate=0.1, verbose=0)
+model.fit(X, y)
+","Sample 56: Trains a CatBoost model on Zillow data using features ['sqft_living', 'sqft_lot'], with 100 iterations, depth 4, and learning rate 0.1."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_57.csv')
+df = df.dropna(subset=['sqft_living', 'sqft_lot', 'price'])
+
+X = df[['sqft_living', 'sqft_lot']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=50, depth=8, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 57: Trains a CatBoost model on Zillow data using features ['sqft_living', 'sqft_lot'], with 50 iterations, depth 8, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_58.csv')
+df = df.dropna(subset=['zipcode', 'condition', 'price'])
+df['zipcode'] = df['zipcode'].astype(str)
+X = df[['zipcode', 'condition']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=150, depth=4, learning_rate=0.05, verbose=0)
+model.fit(X, y, cat_features=['zipcode', 'condition'])
+","Sample 58: Trains a CatBoost model on Zillow data using features ['zipcode', 'condition'], with 150 iterations, depth 4, and learning rate 0.05. Handles categorical features."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_59.csv')
+df = df.dropna(subset=['bedrooms', 'floors', 'view', 'price'])
+
+X = df[['bedrooms', 'floors', 'view']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=150, depth=4, learning_rate=0.1, verbose=0)
+model.fit(X, y)
+","Sample 59: Trains a CatBoost model on Zillow data using features ['bedrooms', 'floors', 'view'], with 150 iterations, depth 4, and learning rate 0.1."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_60.csv')
+df = df.dropna(subset=['bedrooms', 'bathrooms', 'price'])
+
+X = df[['bedrooms', 'bathrooms']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=150, depth=4, learning_rate=0.1, verbose=0)
+model.fit(X, y)
+","Sample 60: Trains a CatBoost model on Zillow data using features ['bedrooms', 'bathrooms'], with 150 iterations, depth 4, and learning rate 0.1."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_61.csv')
+df = df.dropna(subset=['bedrooms', 'floors', 'view', 'price'])
+
+X = df[['bedrooms', 'floors', 'view']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=100, depth=4, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 61: Trains a CatBoost model on Zillow data using features ['bedrooms', 'floors', 'view'], with 100 iterations, depth 4, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_62.csv')
+df = df.dropna(subset=['sqft_basement', 'grade', 'price'])
+
+X = df[['sqft_basement', 'grade']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=50, depth=8, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 62: Trains a CatBoost model on Zillow data using features ['sqft_basement', 'grade'], with 50 iterations, depth 8, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_63.csv')
+df = df.dropna(subset=['bedrooms', 'floors', 'view', 'price'])
+
+X = df[['bedrooms', 'floors', 'view']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=200, depth=4, learning_rate=0.05, verbose=0)
+model.fit(X, y)
+","Sample 63: Trains a CatBoost model on Zillow data using features ['bedrooms', 'floors', 'view'], with 200 iterations, depth 4, and learning rate 0.05."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_64.csv')
+df = df.dropna(subset=['sqft_basement', 'grade', 'price'])
+
+X = df[['sqft_basement', 'grade']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=100, depth=8, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 64: Trains a CatBoost model on Zillow data using features ['sqft_basement', 'grade'], with 100 iterations, depth 8, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_65.csv')
+df = df.dropna(subset=['sqft_basement', 'grade', 'price'])
+
+X = df[['sqft_basement', 'grade']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=100, depth=6, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 65: Trains a CatBoost model on Zillow data using features ['sqft_basement', 'grade'], with 100 iterations, depth 6, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_66.csv')
+df = df.dropna(subset=['sqft_basement', 'grade', 'price'])
+
+X = df[['sqft_basement', 'grade']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=150, depth=6, learning_rate=0.1, verbose=0)
+model.fit(X, y)
+","Sample 66: Trains a CatBoost model on Zillow data using features ['sqft_basement', 'grade'], with 150 iterations, depth 6, and learning rate 0.1."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_67.csv')
+df = df.dropna(subset=['sqft_living', 'sqft_lot', 'price'])
+
+X = df[['sqft_living', 'sqft_lot']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=200, depth=6, learning_rate=0.05, verbose=0)
+model.fit(X, y)
+","Sample 67: Trains a CatBoost model on Zillow data using features ['sqft_living', 'sqft_lot'], with 200 iterations, depth 6, and learning rate 0.05."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_68.csv')
+df = df.dropna(subset=['bedrooms', 'bathrooms', 'price'])
+
+X = df[['bedrooms', 'bathrooms']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=150, depth=6, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 68: Trains a CatBoost model on Zillow data using features ['bedrooms', 'bathrooms'], with 150 iterations, depth 6, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_69.csv')
+df = df.dropna(subset=['bedrooms', 'bathrooms', 'price'])
+
+X = df[['bedrooms', 'bathrooms']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=200, depth=4, learning_rate=0.1, verbose=0)
+model.fit(X, y)
+","Sample 69: Trains a CatBoost model on Zillow data using features ['bedrooms', 'bathrooms'], with 200 iterations, depth 4, and learning rate 0.1."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_70.csv')
+df = df.dropna(subset=['sqft_basement', 'grade', 'price'])
+
+X = df[['sqft_basement', 'grade']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=150, depth=8, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 70: Trains a CatBoost model on Zillow data using features ['sqft_basement', 'grade'], with 150 iterations, depth 8, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_71.csv')
+df = df.dropna(subset=['bedrooms', 'floors', 'view', 'price'])
+
+X = df[['bedrooms', 'floors', 'view']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=150, depth=8, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 71: Trains a CatBoost model on Zillow data using features ['bedrooms', 'floors', 'view'], with 150 iterations, depth 8, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_72.csv')
+df = df.dropna(subset=['bedrooms', 'floors', 'view', 'price'])
+
+X = df[['bedrooms', 'floors', 'view']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=50, depth=6, learning_rate=0.1, verbose=0)
+model.fit(X, y)
+","Sample 72: Trains a CatBoost model on Zillow data using features ['bedrooms', 'floors', 'view'], with 50 iterations, depth 6, and learning rate 0.1."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_73.csv')
+df = df.dropna(subset=['bedrooms', 'bathrooms', 'price'])
+
+X = df[['bedrooms', 'bathrooms']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=200, depth=4, learning_rate=0.05, verbose=0)
+model.fit(X, y)
+","Sample 73: Trains a CatBoost model on Zillow data using features ['bedrooms', 'bathrooms'], with 200 iterations, depth 4, and learning rate 0.05."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_74.csv')
+df = df.dropna(subset=['bedrooms', 'floors', 'view', 'price'])
+
+X = df[['bedrooms', 'floors', 'view']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=200, depth=6, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 74: Trains a CatBoost model on Zillow data using features ['bedrooms', 'floors', 'view'], with 200 iterations, depth 6, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_75.csv')
+df = df.dropna(subset=['bedrooms', 'floors', 'view', 'price'])
+
+X = df[['bedrooms', 'floors', 'view']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=50, depth=8, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 75: Trains a CatBoost model on Zillow data using features ['bedrooms', 'floors', 'view'], with 50 iterations, depth 8, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_76.csv')
+df = df.dropna(subset=['zipcode', 'condition', 'price'])
+df['zipcode'] = df['zipcode'].astype(str)
+X = df[['zipcode', 'condition']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=150, depth=8, learning_rate=0.1, verbose=0)
+model.fit(X, y, cat_features=['zipcode', 'condition'])
+","Sample 76: Trains a CatBoost model on Zillow data using features ['zipcode', 'condition'], with 150 iterations, depth 8, and learning rate 0.1. Handles categorical features."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_77.csv')
+df = df.dropna(subset=['bedrooms', 'floors', 'view', 'price'])
+
+X = df[['bedrooms', 'floors', 'view']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=200, depth=4, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 77: Trains a CatBoost model on Zillow data using features ['bedrooms', 'floors', 'view'], with 200 iterations, depth 4, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_78.csv')
+df = df.dropna(subset=['sqft_basement', 'grade', 'price'])
+
+X = df[['sqft_basement', 'grade']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=150, depth=4, learning_rate=0.1, verbose=0)
+model.fit(X, y)
+","Sample 78: Trains a CatBoost model on Zillow data using features ['sqft_basement', 'grade'], with 150 iterations, depth 4, and learning rate 0.1."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_79.csv')
+df = df.dropna(subset=['zipcode', 'condition', 'price'])
+df['zipcode'] = df['zipcode'].astype(str)
+X = df[['zipcode', 'condition']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=150, depth=8, learning_rate=0.15, verbose=0)
+model.fit(X, y, cat_features=['zipcode', 'condition'])
+","Sample 79: Trains a CatBoost model on Zillow data using features ['zipcode', 'condition'], with 150 iterations, depth 8, and learning rate 0.15. Handles categorical features."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_80.csv')
+df = df.dropna(subset=['bedrooms', 'floors', 'view', 'price'])
+
+X = df[['bedrooms', 'floors', 'view']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=50, depth=8, learning_rate=0.1, verbose=0)
+model.fit(X, y)
+","Sample 80: Trains a CatBoost model on Zillow data using features ['bedrooms', 'floors', 'view'], with 50 iterations, depth 8, and learning rate 0.1."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_81.csv')
+df = df.dropna(subset=['zipcode', 'condition', 'price'])
+df['zipcode'] = df['zipcode'].astype(str)
+X = df[['zipcode', 'condition']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=50, depth=4, learning_rate=0.05, verbose=0)
+model.fit(X, y, cat_features=['zipcode', 'condition'])
+","Sample 81: Trains a CatBoost model on Zillow data using features ['zipcode', 'condition'], with 50 iterations, depth 4, and learning rate 0.05. Handles categorical features."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_82.csv')
+df = df.dropna(subset=['zipcode', 'condition', 'price'])
+df['zipcode'] = df['zipcode'].astype(str)
+X = df[['zipcode', 'condition']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=50, depth=8, learning_rate=0.05, verbose=0)
+model.fit(X, y, cat_features=['zipcode', 'condition'])
+","Sample 82: Trains a CatBoost model on Zillow data using features ['zipcode', 'condition'], with 50 iterations, depth 8, and learning rate 0.05. Handles categorical features."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_83.csv')
+df = df.dropna(subset=['bedrooms', 'floors', 'view', 'price'])
+
+X = df[['bedrooms', 'floors', 'view']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=150, depth=6, learning_rate=0.1, verbose=0)
+model.fit(X, y)
+","Sample 83: Trains a CatBoost model on Zillow data using features ['bedrooms', 'floors', 'view'], with 150 iterations, depth 6, and learning rate 0.1."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_84.csv')
+df = df.dropna(subset=['bedrooms', 'bathrooms', 'price'])
+
+X = df[['bedrooms', 'bathrooms']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=100, depth=8, learning_rate=0.1, verbose=0)
+model.fit(X, y)
+","Sample 84: Trains a CatBoost model on Zillow data using features ['bedrooms', 'bathrooms'], with 100 iterations, depth 8, and learning rate 0.1."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_85.csv')
+df = df.dropna(subset=['zipcode', 'condition', 'price'])
+df['zipcode'] = df['zipcode'].astype(str)
+X = df[['zipcode', 'condition']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=50, depth=8, learning_rate=0.15, verbose=0)
+model.fit(X, y, cat_features=['zipcode', 'condition'])
+","Sample 85: Trains a CatBoost model on Zillow data using features ['zipcode', 'condition'], with 50 iterations, depth 8, and learning rate 0.15. Handles categorical features."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_86.csv')
+df = df.dropna(subset=['sqft_living', 'sqft_lot', 'price'])
+
+X = df[['sqft_living', 'sqft_lot']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=50, depth=8, learning_rate=0.05, verbose=0)
+model.fit(X, y)
+","Sample 86: Trains a CatBoost model on Zillow data using features ['sqft_living', 'sqft_lot'], with 50 iterations, depth 8, and learning rate 0.05."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_87.csv')
+df = df.dropna(subset=['zipcode', 'condition', 'price'])
+df['zipcode'] = df['zipcode'].astype(str)
+X = df[['zipcode', 'condition']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=50, depth=6, learning_rate=0.15, verbose=0)
+model.fit(X, y, cat_features=['zipcode', 'condition'])
+","Sample 87: Trains a CatBoost model on Zillow data using features ['zipcode', 'condition'], with 50 iterations, depth 6, and learning rate 0.15. Handles categorical features."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_88.csv')
+df = df.dropna(subset=['sqft_living', 'sqft_lot', 'price'])
+
+X = df[['sqft_living', 'sqft_lot']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=200, depth=4, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 88: Trains a CatBoost model on Zillow data using features ['sqft_living', 'sqft_lot'], with 200 iterations, depth 4, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_89.csv')
+df = df.dropna(subset=['sqft_basement', 'grade', 'price'])
+
+X = df[['sqft_basement', 'grade']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=150, depth=8, learning_rate=0.1, verbose=0)
+model.fit(X, y)
+","Sample 89: Trains a CatBoost model on Zillow data using features ['sqft_basement', 'grade'], with 150 iterations, depth 8, and learning rate 0.1."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_90.csv')
+df = df.dropna(subset=['sqft_basement', 'grade', 'price'])
+
+X = df[['sqft_basement', 'grade']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=150, depth=6, learning_rate=0.1, verbose=0)
+model.fit(X, y)
+","Sample 90: Trains a CatBoost model on Zillow data using features ['sqft_basement', 'grade'], with 150 iterations, depth 6, and learning rate 0.1."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_91.csv')
+df = df.dropna(subset=['sqft_living', 'sqft_lot', 'price'])
+
+X = df[['sqft_living', 'sqft_lot']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=50, depth=6, learning_rate=0.1, verbose=0)
+model.fit(X, y)
+","Sample 91: Trains a CatBoost model on Zillow data using features ['sqft_living', 'sqft_lot'], with 50 iterations, depth 6, and learning rate 0.1."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_92.csv')
+df = df.dropna(subset=['sqft_basement', 'grade', 'price'])
+
+X = df[['sqft_basement', 'grade']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=50, depth=6, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 92: Trains a CatBoost model on Zillow data using features ['sqft_basement', 'grade'], with 50 iterations, depth 6, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_93.csv')
+df = df.dropna(subset=['zipcode', 'condition', 'price'])
+df['zipcode'] = df['zipcode'].astype(str)
+X = df[['zipcode', 'condition']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=150, depth=8, learning_rate=0.1, verbose=0)
+model.fit(X, y, cat_features=['zipcode', 'condition'])
+","Sample 93: Trains a CatBoost model on Zillow data using features ['zipcode', 'condition'], with 150 iterations, depth 8, and learning rate 0.1. Handles categorical features."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_94.csv')
+df = df.dropna(subset=['zipcode', 'condition', 'price'])
+df['zipcode'] = df['zipcode'].astype(str)
+X = df[['zipcode', 'condition']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=150, depth=6, learning_rate=0.1, verbose=0)
+model.fit(X, y, cat_features=['zipcode', 'condition'])
+","Sample 94: Trains a CatBoost model on Zillow data using features ['zipcode', 'condition'], with 150 iterations, depth 6, and learning rate 0.1. Handles categorical features."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_95.csv')
+df = df.dropna(subset=['bedrooms', 'bathrooms', 'price'])
+
+X = df[['bedrooms', 'bathrooms']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=50, depth=4, learning_rate=0.1, verbose=0)
+model.fit(X, y)
+","Sample 95: Trains a CatBoost model on Zillow data using features ['bedrooms', 'bathrooms'], with 50 iterations, depth 4, and learning rate 0.1."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_96.csv')
+df = df.dropna(subset=['sqft_living', 'sqft_lot', 'price'])
+
+X = df[['sqft_living', 'sqft_lot']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=150, depth=4, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 96: Trains a CatBoost model on Zillow data using features ['sqft_living', 'sqft_lot'], with 150 iterations, depth 4, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_97.csv')
+df = df.dropna(subset=['bedrooms', 'bathrooms', 'price'])
+
+X = df[['bedrooms', 'bathrooms']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=150, depth=4, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 97: Trains a CatBoost model on Zillow data using features ['bedrooms', 'bathrooms'], with 150 iterations, depth 4, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_98.csv')
+df = df.dropna(subset=['bedrooms', 'floors', 'view', 'price'])
+
+X = df[['bedrooms', 'floors', 'view']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=200, depth=8, learning_rate=0.15, verbose=0)
+model.fit(X, y)
+","Sample 98: Trains a CatBoost model on Zillow data using features ['bedrooms', 'floors', 'view'], with 200 iterations, depth 8, and learning rate 0.15."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_99.csv')
+df = df.dropna(subset=['bedrooms', 'bathrooms', 'price'])
+
+X = df[['bedrooms', 'bathrooms']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=150, depth=6, learning_rate=0.1, verbose=0)
+model.fit(X, y)
+","Sample 99: Trains a CatBoost model on Zillow data using features ['bedrooms', 'bathrooms'], with 150 iterations, depth 6, and learning rate 0.1."
+"import pandas as pd
+from catboost import CatBoostRegressor
+
+df = pd.read_csv('zillow_sample_100.csv')
+df = df.dropna(subset=['bedrooms', 'bathrooms', 'price'])
+
+X = df[['bedrooms', 'bathrooms']]
+y = df['price']
+
+model = CatBoostRegressor(iterations=50, depth=6, learning_rate=0.05, verbose=0)
+model.fit(X, y)
+","Sample 100: Trains a CatBoost model on Zillow data using features ['bedrooms', 'bathrooms'], with 50 iterations, depth 6, and learning rate 0.05."

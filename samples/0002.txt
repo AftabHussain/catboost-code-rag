@@ -1,0 +1,1 @@
+This snippet demonstrates data cleaning by filling missing bathrooms with the median, engineering a new feature price per square foot, and filtering out outliers with unrealistic home prices.
