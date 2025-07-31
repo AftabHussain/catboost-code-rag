@@ -5,6 +5,9 @@ import pandas as pd
 
 # Load CSV data
 df = pd.read_csv('samples/zillow_catboost_samples_16_to_25.csv')
+df2 = pd.read_csv('samples/zillow_catboost_samples_26_to_100.csv')
+df = pd.concat([df, df2], ignore_index=True)
+
 
 # Prepare documents list by combining code and description columns
 documents = [
@@ -19,5 +22,5 @@ embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-Mi
 vectorstore = FAISS.from_documents(documents, embedding_model)
 
 # Save the vectorstore locally
-vectorstore.save_local("rag_vectorstore_db")
+vectorstore.save_local("rag_vectorstore_db_v2")
 
