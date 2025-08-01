@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "question": "What features are used as inputs to the CatBoost model in the Zillow dataset?",
+    "context": "import pandas as pd\nfrom catboost import CatBoostRegressor\n\ndf = pd.read_csv('zillow_sample_64.csv')\ndf = df.dropna(subset=['sqft_basement', 'grade', 'price'])\n\nX = df[['sqft_basement', 'grade']]\ny = df['price']\n\nmodel = CatBoostRegressor(iterations=100, depth=8, learning_rate=0.15, verbose=0)\nmodel.fit(X, y)\n Sample 64: Trains a CatBoost model on Zillow data using features ['sqft_basement', 'grade'], with 100 iterations, depth 8, and learning rate 0.15.",
+    "answer": "The features used as inputs to the CatBoost model in the Zillow dataset are'sqft_basement' and 'grade'."
+  },
+  {
+    "id": 2,
+    "question": "How is the 'condition' column preprocessed before training CatBoost in Zillow samples?",
+    "context": "import pandas as pd\nfrom sklearn.preprocessing import LabelEncoder\nfrom catboost import CatBoostRegressor\n\ndf = pd.read_csv('zillow_sample_16.csv')\ndf['condition'] = LabelEncoder().fit_transform(df['condition'])\n\nX = df[['bedrooms', 'condition', 'sqft_living']]\ny = df['price']\n\nmodel = CatBoostRegressor(verbose=0)\nmodel.fit(X, y)\n Sample 16: Encodes 'condition' feature numerically and uses it to train a CatBoost model.",
+    "answer": "The 'condition' column is preprocessed by encoding it numerically using the LabelEncoder() function from the sklearn.preprocessing module. This is done by fitting the LabelEncoder() function on the 'condition' column of the dataframe (df) using the fit_transform() method. After encoding, the preprocessed 'condition' column is used as one of the input features (X) along with 'bedrooms' and'sqft_living' to train a CatBoostRegressor model."
+  }
+]
