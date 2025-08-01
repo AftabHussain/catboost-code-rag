@@ -20,7 +20,9 @@ Launch the Flask web app to browse the saved QA pairs:
 ```bash
 python app.py
 ```
-The web app provides an interactive interface to navigate through your question-answer samples, displaying the context, question, and model-generated answers in a clean format:
+The web app provides an interactive interface to navigate through your question-answer samples, displaying the context, question, and model-generated answers in a clean format.
+
+### Example
 
 <img width="2366" height="928" alt="Screenshot from 2025-07-31 18-57-09" src="https://github.com/user-attachments/assets/c4be6ee3-2bd0-4a57-ac34-21c7226189df" />
 
