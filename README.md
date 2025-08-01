@@ -1,5 +1,12 @@
-# Zillow-CodeRAG: A Retrieval-Augmented QA System for CatBoost Code Snippets
-Retrieval-Augmented Generation (RAG) QA system on Zillow housing data and CatBoost code samples using FAISS, HuggingFace embeddings, and open-source language models. Includes a local pipeline for context-aware code search and question answering.
+# CodeContext Explorer: CatBoost Code Explanation with RAG on Zillow Data
+
+In this exploratory work, a Retrieval-Augmented Generation (RAG) system, **CodeContext Explorer**, is built to **provide code explanations** aimed at demonstrating the **potential of combining RAG techniques with domain-specific code context**. In this work, housing-data-related code is picked, in particular CatBoost code snippets applied to housing datasets (e.g. Zillow). CodeContext Explorer enables users to query contextualized code examples and their descriptions, supporting better understanding and usage of CatBoost in real estate modeling tasks. 
+
+The system relies upon synthetically created CatBoost code samples, used in the domain of housing data, with descriptive annotations. Using vector embeddings and a FAISS index, it retrieves the most relevant code-context pairs in response to user queries. These retrieved contexts are passed to the Mistral-7B-Instruct language model with custom prompts to generate explanations. 
+
+Results are stored in JSON format and presented through an interactive Flask web interface, allowing easy browsing of questions, related code snippets, and explanations — facilitating learning and exploration for data scientists and ML practitioners.
+
+See [here](https://github.com/AftabHussain/catboost-code-rag/blob/main/README.md#example) for an example.
 
 # Usage
 
