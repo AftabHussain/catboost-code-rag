@@ -1,0 +1,131 @@
+code,description
+"from catboost import CatBoostRegressor, Pool, MultiTargetCustomMetric
+from sklearn.datasets import make_regression
+from sklearn.model_selection import train_test_split
+import numpy as np
+
+# 1. Create synthetic multi-target regression data
+X, Y = make_regression(
+    n_samples=1000,
+    n_features=10,
+    n_targets=2,  # Predict two targets: e.g., price and size
+    noise=0.1,
+    random_state=42
+)
+
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
+
+# 2. Define a custom multi-target RMSE metric
+class MultiRMSE(MultiTargetCustomMetric):
+    def is_max_optimal(self):
+        return False
+
+    def evaluate(self, approxes, targets, weight):
+        n_targets = len(approxes)
+        errors = []
+        for i in range(n_targets):
+            approx = approxes[i]
+            target = targets[i]
+            if weight is None:
+                error = np.sqrt(np.mean((np.array(approx) - np.array(target)) ** 2))
+            else:
+                w = np.array(weight)
+                error = np.sqrt(np.average((np.array(approx) - np.array(target)) ** 2, weights=w))
+            errors.append(error)
+        return [(error, 1.0) for error in errors]
+
+    def get_final_error(self, error, weight):
+        return np.mean(error)
+
+# 3. Create Pools
+train_pool = Pool(X_train, Y_train)
+test_pool = Pool(X_test, Y_test)
+
+# 4. Train model
+model = CatBoostRegressor(
+    iterations=100,
+    loss_function='MultiRMSE',
+    custom_metric=[MultiRMSE()],
+    verbose=10
+)
+
+model.fit(train_pool, eval_set=test_pool)",
+"Sample 101: This script demonstrates how to use CatBoost's MultiTargetCustomMetric on a synthetic multi-output regression task, simulating a housing dataset with two targets (e.g., price and size). A custom RMSE metric is defined to compute error for each target and average them. CatBoostRegressor is trained with this custom metric for evaluation, while using the built-in MultiRMSE for optimization. This setup shows how to integrate and monitor complex, domain-specific metrics during multi-target learning."
+"from catboost import CatBoostRegressor, Pool, MultiTargetCustomMetric
+from sklearn.datasets import fetch_california_housing
+from sklearn.model_selection import train_test_split
+import numpy as np
+
+# Load real housing data
+data = fetch_california_housing()
+X = data.data
+y1 = data.target
+# Create a second target artificially
+y2 = y1 * 1.5 + np.random.normal(0, 0.1, size=y1.shape)
+Y = np.vstack([y1, y2]).T
+
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
+
+# Custom average absolute error across both targets
+class MultiMAE(MultiTargetCustomMetric):
+    def is_max_optimal(self):
+        return False
+
+    def evaluate(self, approxes, targets, weight):
+        n_targets = len(approxes)
+        errors = []
+        for i in range(n_targets):
+            error = np.mean(np.abs(np.array(approxes[i]) - np.array(targets[i])))
+            errors.append(error)
+        return [(e, 1.0) for e in errors]
+
+    def get_final_error(self, error, weight):
+        return np.mean(error)
+
+train_pool = Pool(X_train, Y_train)
+test_pool = Pool(X_test, Y_test)
+
+model = CatBoostRegressor(
+    iterations=50,
+    loss_function='MultiRMSE',
+    custom_metric=[MultiMAE()],
+    verbose=5
+)
+
+model.fit(train_pool, eval_set=test_pool)",
+"Sample 102: This example uses the real-world California housing dataset to demonstrate multi-target regression with CatBoost. The original target, median house value, is duplicated into a second target with a transformation and noise. A custom metric (MultiMAE) is implemented to track average absolute error across both targets. CatBoost trains with MultiRMSE as the loss and logs the custom MAE during training. This setup illustrates how to apply multi-output learning with real housing data and custom evaluation logic."
+"from catboost import CatBoostClassifier, CatBoostRegressor, Pool
+from sklearn.datasets import fetch_california_housing
+from sklearn.model_selection import train_test_split
+import numpy as np
+
+# Load California housing data
+data = fetch_california_housing()
+X = data.data
+y_price = data.target
+
+# Create a binary classification label: expensive (1) if price > median, else 0
+median_price = np.median(y_price)
+y_expensive = (y_price > median_price).astype(int)
+
+# Split data
+X_train, X_test, y_price_train, y_price_test = train_test_split(X, y_price, test_size=0.2, random_state=42)
+_, _, y_class_train, y_class_test = train_test_split(X, y_expensive, test_size=0.2, random_state=42)
+
+# Train regression model
+regressor = CatBoostRegressor(iterations=50, verbose=0)
+regressor.fit(X_train, y_price_train)
+
+# Train classification model
+classifier = CatBoostClassifier(iterations=50, verbose=0)
+classifier.fit(X_train, y_class_train)
+
+# Predict
+predicted_price = regressor.predict(X_test[:5])
+predicted_class = classifier.predict(X_test[:5])
+
+print('Predicted prices:', predicted_price)
+print('Predicted expensive (1=yes):', predicted_class)",
+"Sample 104: This example demonstrates how to use CatBoostRegressor and CatBoostClassifier on a real housing dataset. The regressor predicts house prices, while the classifier predicts whether a house is expensive (above the median). Both models are trained on a small subset of the California housing dataset with 50 iterations. The predictions show the first five results from each model."
+
+
