@@ -1,0 +1,31 @@
+### CODE TEMPLATE ###
+from catboost import CatBoostRegressor, Pool
+import pandas as pd
+from sklearn.model_selection import KFold
+import numpy as np
+
+df = pd.read_csv("{dataset}")
+X = df.drop("{target}", axis=1)
+y = df["{target}"]
+
+kf = KFold(n_splits={folds}, shuffle=True, random_state=42)
+for train_index, val_index in kf.split(X):
+    X_train, X_val = X.iloc[train_index], X.iloc[val_index]
+    y_train, y_val = y.iloc[train_index], y.iloc[val_index]
+
+    train_pool = Pool(X_train, y_train, cat_features={cat_features})
+    val_pool = Pool(X_val, y_val, cat_features={cat_features})
+
+    model = CatBoostRegressor(
+        iterations={iterations},
+        depth={depth},
+        learning_rate={learning_rate},
+        loss_function="{loss_function}",
+        verbose=False
+    )
+    model.fit(train_pool, eval_set=val_pool, early_stopping_rounds=30)
+    print("Fold training complete.")
+
+### DESCRIPTION TEMPLATE ###
+This example shows manual K-Fold cross-validation with {folds} splits, training a CatBoost model with early stopping on the {dataset} dataset to predict {target}.
+

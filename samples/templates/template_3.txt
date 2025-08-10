@@ -1,0 +1,24 @@
+### CODE TEMPLATE ###
+from catboost import CatBoostRegressor, cv, Pool
+import pandas as pd
+
+df = pd.read_csv("{dataset}")
+X = df.drop("{target}", axis=1)
+y = df["{target}"]
+
+pool = Pool(X, y, cat_features={cat_features})
+
+params = {{
+    "iterations": {iterations},
+    "depth": {depth},
+    "learning_rate": {learning_rate},
+    "loss_function": "{loss_function}",
+    "verbose": False
+}}
+
+cv_results = cv(pool, params, fold_count={folds}, plot=False)
+print(cv_results)
+
+### DESCRIPTION TEMPLATE ###
+This example performs {folds}-fold cross-validation using CatBoost on the {dataset} dataset, focusing on predicting the {target} variable.
+

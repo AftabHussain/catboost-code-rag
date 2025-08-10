@@ -1,0 +1,28 @@
+### CODE TEMPLATE ###
+from catboost import CatBoostRegressor, Pool
+import pandas as pd
+from sklearn.metrics import mean_squared_error
+
+df = pd.read_csv("{dataset}")
+X = df.drop("{target}", axis=1)
+y = df["{target}"]
+
+train_pool = Pool(X, y, cat_features={cat_features})
+
+model = CatBoostRegressor(
+    iterations={iterations},
+    depth={depth},
+    learning_rate={learning_rate},
+    loss_function="{loss_function}",
+    verbose=False
+)
+
+model.fit(train_pool)
+preds = model.predict(X)
+
+mse = mean_squared_error(y, preds)
+print(f"Mean Squared Error: {mse}")
+
+### DESCRIPTION TEMPLATE ###
+This snippet trains a CatBoost model and evaluates it using Mean Squared Error on the {dataset} dataset predicting {target}.
+

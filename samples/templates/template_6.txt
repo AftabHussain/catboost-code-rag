@@ -1,0 +1,24 @@
+### CODE TEMPLATE ###
+from catboost import CatBoostRegressor, Pool
+import pandas as pd
+
+df = pd.read_csv("{dataset}")
+X = df.drop("{target}", axis=1)
+y = df["{target}"]
+
+train_pool = Pool(X, y, cat_features={cat_features})
+
+model = CatBoostRegressor(
+    iterations={iterations},
+    depth={depth},
+    learning_rate={learning_rate},
+    loss_function="{loss_function}",
+    verbose=False,
+    random_seed=42
+)
+
+model.fit(train_pool, verbose=100)
+
+### DESCRIPTION TEMPLATE ###
+This snippet trains a CatBoost model on {dataset} to predict {target} with a fixed random seed for reproducibility and verbose output every 100 iterations.
+

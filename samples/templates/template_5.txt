@@ -1,0 +1,28 @@
+### CODE TEMPLATE ###
+from catboost import CatBoostRegressor, Pool
+import pandas as pd
+from sklearn.model_selection import train_test_split
+
+df = pd.read_csv("{dataset}")
+X = df.drop("{target}", axis=1)
+y = df["{target}"]
+
+X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2)
+
+train_pool = Pool(X_train, y_train, cat_features={cat_features})
+val_pool = Pool(X_val, y_val, cat_features={cat_features})
+
+model = CatBoostRegressor(
+    iterations={iterations},
+    depth={depth},
+    learning_rate={learning_rate},
+    loss_function="{loss_function}",
+    verbose=False
+)
+
+model.fit(train_pool, eval_set=val_pool, early_stopping_rounds=20)
+print("Training with early stopping complete.")
+
+### DESCRIPTION TEMPLATE ###
+This example demonstrates training a CatBoost model with early stopping on a validation set using the {dataset} dataset to predict {target}.
+

@@ -1,0 +1,31 @@
+### CODE TEMPLATE ###
+from catboost import CatBoostRegressor, Pool
+import pandas as pd
+import joblib
+
+df = pd.read_csv("{dataset}")
+X = df.drop("{target}", axis=1)
+y = df["{target}"]
+
+train_pool = Pool(X, y, cat_features={cat_features})
+
+model = CatBoostRegressor(
+    iterations={iterations},
+    depth={depth},
+    learning_rate={learning_rate},
+    loss_function="{loss_function}",
+    verbose=False
+)
+
+model.fit(train_pool)
+joblib.dump(model, "catboost_model.pkl")
+
+# Later, load model
+loaded_model = joblib.load("catboost_model.pkl")
+preds = loaded_model.predict(X)
+print(preds[:5])
+
+
+### DESCRIPTION TEMPLATE ###
+This example shows training, saving, and loading a CatBoost model using joblib on the {dataset} dataset for {target} prediction.
+

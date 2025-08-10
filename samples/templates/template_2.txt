@@ -1,0 +1,22 @@
+### CODE TEMPLATE ###
+from catboost import CatBoostRegressor
+import pandas as pd
+
+df = pd.read_csv("{dataset}").fillna(0)
+X = df.drop("{target}", axis=1)
+y = df["{target}"]
+
+model = CatBoostRegressor(
+    iterations={iterations},
+    depth={depth},
+    learning_rate={learning_rate},
+    loss_function="{loss_function}",
+    verbose=False
+)
+
+model.fit(X, y)
+print("Training completed with missing value handling.")
+
+### DESCRIPTION TEMPLATE ###
+This snippet shows how to handle missing values by filling them with zeros before training a CatBoost model to predict {target} on the {dataset} dataset.
+

@@ -1,0 +1,29 @@
+### CODE TEMPLATE ###
+from catboost import CatBoostRegressor, Pool
+import pandas as pd
+import shap
+
+df = pd.read_csv("{dataset}")
+X = df.drop("{target}", axis=1)
+y = df["{target}"]
+
+pool = Pool(X, y, cat_features={cat_features})
+
+model = CatBoostRegressor(
+    iterations={iterations},
+    depth={depth},
+    learning_rate={learning_rate},
+    loss_function="{loss_function}",
+    verbose=False
+)
+
+model.fit(pool)
+
+explainer = shap.TreeExplainer(model)
+shap_values = explainer.shap_values(X)
+
+shap.summary_plot(shap_values, X)
+
+### DESCRIPTION TEMPLATE ###
+This snippet trains a CatBoost model on {dataset} and uses SHAP to explain feature impacts on the predicted {target} values.
+

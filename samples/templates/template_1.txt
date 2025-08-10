@@ -1,0 +1,24 @@
+### CODE TEMPLATE ###
+from catboost import CatBoostRegressor, Pool
+import pandas as pd
+
+df = pd.read_csv("{dataset}")
+X = df.drop("{target}", axis=1)
+y = df["{target}"]
+
+train_pool = Pool(X, y, cat_features={cat_features})
+
+model = CatBoostRegressor(
+    iterations={iterations},
+    depth={depth},
+    learning_rate={learning_rate},
+    loss_function="{loss_function}",
+    verbose=False
+)
+
+model.fit(train_pool)
+model.save_model("catboost_model.cbm")
+
+### DESCRIPTION TEMPLATE ###
+This example demonstrates basic training and saving of a CatBoost model on the {dataset} dataset, predicting the {target} variable using categorical features {cat_features}.
+
