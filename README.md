@@ -8,9 +8,9 @@ Results are stored in JSON format and presented through an interactive Flask web
 
 See [here](https://github.com/AftabHussain/catboost-code-rag/blob/main/README.md#example) for an example.
 
-# Usage
+## Usage
 
-## Query the Model
+### Query the Model
 
 Run the retrieval-augmented generation pipeline with Mistral:
 
@@ -20,7 +20,7 @@ python rag_query_pipeline_mistral_prompt.py
 
 This script performs a full RAG query using the Mistral-7B-Instruct model and saves the question, context, and answer to the dataset.
 
-## View Results
+### View Results
 
 Launch the Flask web app to browse the saved QA pairs:
 
@@ -29,12 +29,12 @@ python app.py
 ```
 The web app provides an interactive interface to navigate through your question-answer samples, displaying the context, question, and model-generated answers in a clean format.
 
-### Example
+#### Example
 
 <img width="2366" height="928" alt="Screenshot from 2025-07-31 18-57-09" src="https://github.com/user-attachments/assets/c4be6ee3-2bd0-4a57-ac34-21c7226189df" />
 
 
-### Accessing the Web App Remotely
+#### Accessing the Web App Remotely
 
 From your local machine, create an SSH tunnel to securely access the app running on your server:
 ```bash
@@ -42,7 +42,20 @@ ssh -L 5000:localhost:5000 user@server_address
 ```
 Then open `http://localhost:5000` in your browser to interact with the app.
 
-# Dependencies
+## About the Dataset
+
+We name our dataset, CatBoostCH 1.0 (CatBoost Code for Housing Data). This
+dataset consists of 1,000 synthetically generated Python code snippets
+demonstrating diverse uses of the CatBoost library applied to housing datasets
+similar to Zillow. The samples are created using multiple customizable
+templates, covering a variety of common data processing, model training,
+evaluation, and deployment scenarios. Each code snippet is paired with a
+concise description explaining its purpose and context. Designed as a prototype
+dataset, it offers a scalable foundation that can be expanded with additional
+templates and real-world data for broader applicability in AI/ML research.
+We have provided the scripts used to generate this dataset.
+
+## Dependencies
 
 Make sure you have the following packages installed:
 
