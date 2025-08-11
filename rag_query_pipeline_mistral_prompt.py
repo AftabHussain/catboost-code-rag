@@ -11,7 +11,8 @@ from transformers import pipeline
 # Step 1: Load FAISS vectorstore
 embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 vectorstore = FAISS.load_local(
-    "rag_vectorstore_db_v2",
+    "~/workspace/catboost-code-rag/data/vectordb/rag_vectorstore_db_v1
+    ",
     embedding_model,
     allow_dangerous_deserialization=True
 )

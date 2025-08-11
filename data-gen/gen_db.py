@@ -14,7 +14,7 @@ df = pd.concat([df, df3], ignore_index=True)
 
 # Latest dataset (synthetically generated, template-driven dataset of diverse
 # CatBoost code snippets and descriptions for housing data modeling) 
-df = pd.read_csv('samples/catboost_code_dataset_from_templates.csv')
+df = pd.read_csv('~/workspace/catboost-code-rag/data/raw/catboost_code_dataset_from_templates.csv')
 
 
 
