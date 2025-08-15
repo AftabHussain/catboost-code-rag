@@ -6,7 +6,7 @@ import string
 csv_path = "catboost_code_dataset_templates.csv"
 templates_dir = "templates"
 
-fieldnames = ["code", "description"]
+fieldnames = ["code", "description", "query"]
 
 datasets = [
     "zillow_data.csv", "housing_prices.csv", "real_estate_train.csv",
@@ -42,10 +42,11 @@ def load_templates(folder):
             path = os.path.join(folder, fname)
             with open(path, "r", encoding="utf-8") as f:
                 content = f.read()
-                if "### CODE TEMPLATE ###" in content and "### DESCRIPTION TEMPLATE ###" in content:
-                    code_part = content.split("### CODE TEMPLATE ###")[1].split("### DESCRIPTION TEMPLATE ###")[0].strip()
-                    desc_part = content.split("### DESCRIPTION TEMPLATE ###")[1].strip()
-                    templates.append((code_part, desc_part))
+                if all(marker in content for marker in ["### CODE TEMPLATE ###", "### DESCRIPTION TEMPLATE ###", "### QUERY TEMPLATE ###"]):
+                    parts = content.split("### CODE TEMPLATE ###")[1]
+                    code_part, rest = parts.split("### DESCRIPTION TEMPLATE ###")
+                    desc_part, query_part = rest.split("### QUERY TEMPLATE ###")
+                    templates.append((code_part.strip(), desc_part.strip(), query_part.strip()))
                 else:
                     print(f"[!] Warning: file {fname} missing required markers, skipping.")
     return templates
@@ -79,21 +80,25 @@ with open(csv_path, "w", newline="", encoding="utf-8") as f:
     for i in range(1000):  # generate 1000 samples
         idx = random.randint(0, len(template_pairs) - 1)
 
-        code_template, description_template = template_pairs[idx]
+        code_template, description_template, query_template = template_pairs[idx]
         print(f"Using Template #{idx} for sample {i+1}")
 
         # Extract placeholders from both code and description templates
-        keys = extract_placeholders(code_template).union(extract_placeholders(description_template))
+        keys = extract_placeholders(code_template).union(extract_placeholders(description_template)).union(extract_placeholders(query_template))
+
 
         format_dict = make_format_dict(keys)
 
         try:
             code_snippet = code_template.format(**format_dict).strip()
             description = description_template.format(**format_dict).strip()
+            query = query_template.format(**format_dict).strip()
+
 
             writer.writerow({
-                "code_snippet": code_snippet,
-                "description": description
+                "code": code_snippet,
+                "description": description,
+                "query": query
             })
 
             if (i + 1) % 100 == 0:

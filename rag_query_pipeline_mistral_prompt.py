@@ -11,8 +11,7 @@ from transformers import pipeline
 # Step 1: Load FAISS vectorstore
 embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 vectorstore = FAISS.load_local(
-    "~/workspace/catboost-code-rag/data/vectordb/rag_vectorstore_db_v1
-    ",
+     "./data/vectordb/rag_vectorstore_db_v5",
     embedding_model,
     allow_dangerous_deserialization=True
 )
@@ -92,7 +91,7 @@ print("\n############ CONTEXT RETRIEVED #############\n", context)
 print("\n############ ANSWER ###########\n", answer)
 
 # Load existing JSON or initialize new list
-data_path = "output/data.json"
+data_path = "output/data_new.json"
 if os.path.exists(data_path) and (os.path.getsize(data_path) != 0):
     with open(data_path, "r", encoding="utf-8") as f:
         data = json.load(f)

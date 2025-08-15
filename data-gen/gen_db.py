@@ -14,7 +14,7 @@ df = pd.concat([df, df3], ignore_index=True)
 
 # Latest dataset (synthetically generated, template-driven dataset of diverse
 # CatBoost code snippets and descriptions for housing data modeling) 
-df = pd.read_csv('~/workspace/catboost-code-rag/data/raw/catboost_code_dataset_from_templates.csv')
+df = pd.read_csv('~/workspace/catboost-code-rag/data/raw/catboost_code_dataset_templates_with_query.csv')
 
 
 
@@ -31,5 +31,5 @@ embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-Mi
 vectorstore = FAISS.from_documents(documents, embedding_model)
 
 # Save the vectorstore locally
-vectorstore.save_local("rag_vectorstore_db_v4")
+vectorstore.save_local("rag_vectorstore_db_v5")
 
