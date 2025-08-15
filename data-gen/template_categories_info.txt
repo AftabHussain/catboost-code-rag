@@ -1,0 +1,11 @@
+template no., category
+1,basic training
+2,data preprocessing
+3,cross validation
+4,model training and evaluation
+5,model training and evaluation
+6,model training and evaluation
+7,cross validation
+8,model interpretability
+9,model deployment
+10,model performance metrics
