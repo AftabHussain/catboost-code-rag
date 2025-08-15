@@ -29,3 +29,5 @@ for train_index, val_index in kf.split(X):
 ### DESCRIPTION TEMPLATE ###
 This example shows manual K-Fold cross-validation with {folds} splits, training a CatBoost model with early stopping on the {dataset} dataset to predict {target}.
 
+### QUERY TEMPLATE ###
+How do you perform manual {folds}-fold cross-validation with early stopping on the {dataset} dataset to predict {target} using CatBoost?

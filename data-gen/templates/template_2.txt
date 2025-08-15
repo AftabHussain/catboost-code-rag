@@ -20,3 +20,5 @@ print("Training completed with missing value handling.")
 ### DESCRIPTION TEMPLATE ###
 This snippet shows how to handle missing values by filling them with zeros before training a CatBoost model to predict {target} on the {dataset} dataset.
 
+### QUERY TEMPLATE ###
+How do you handle missing values by filling them with zeros before training a CatBoost model to predict {target} on the {dataset} dataset?

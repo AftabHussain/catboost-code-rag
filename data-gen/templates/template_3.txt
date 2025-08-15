@@ -22,3 +22,5 @@ print(cv_results)
 ### DESCRIPTION TEMPLATE ###
 This example performs {folds}-fold cross-validation using CatBoost on the {dataset} dataset, focusing on predicting the {target} variable.
 
+### QUERY TEMPLATE ###
+How do you perform {folds}-fold cross-validation using CatBoost on the {dataset} dataset to predict the {target} variable?

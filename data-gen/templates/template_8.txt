@@ -27,3 +27,5 @@ shap.summary_plot(shap_values, X)
 ### DESCRIPTION TEMPLATE ###
 This snippet trains a CatBoost model on {dataset} and uses SHAP to explain feature impacts on the predicted {target} values.
 
+### QUERY TEMPLATE ###
+How do you train a CatBoost model on {dataset} and use SHAP to explain feature impacts on the predicted {target} values?

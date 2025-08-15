@@ -25,3 +25,5 @@ for name, score in zip(X.columns, importances):
 ### DESCRIPTION TEMPLATE ###
 This code demonstrates how to train a CatBoost model and extract feature importances on the {dataset} dataset for predicting {target}.
 
+### QUERY TEMPLATE ###
+How do you train a CatBoost model and extract feature importances on the {dataset} dataset to predict {target}?

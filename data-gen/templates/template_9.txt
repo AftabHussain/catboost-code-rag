@@ -29,3 +29,5 @@ print(preds[:5])
 ### DESCRIPTION TEMPLATE ###
 This example shows training, saving, and loading a CatBoost model using joblib on the {dataset} dataset for {target} prediction.
 
+### QUERY TEMPLATE ###
+How do you train, save, and load a CatBoost model using joblib on the {dataset} dataset for predicting {target}?

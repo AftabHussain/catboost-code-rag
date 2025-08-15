@@ -22,3 +22,5 @@ model.fit(train_pool, verbose=100)
 ### DESCRIPTION TEMPLATE ###
 This snippet trains a CatBoost model on {dataset} to predict {target} with a fixed random seed for reproducibility and verbose output every 100 iterations.
 
+### QUERY TEMPLATE ###
+How do you train a CatBoost model on {dataset} to predict {target} with a fixed random seed for reproducibility and verbose output every 100 iterations?

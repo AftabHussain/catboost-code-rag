@@ -26,3 +26,5 @@ print("Training with early stopping complete.")
 ### DESCRIPTION TEMPLATE ###
 This example demonstrates training a CatBoost model with early stopping on a validation set using the {dataset} dataset to predict {target}.
 
+### QUERY TEMPLATE ###
+How do you train a CatBoost model with early stopping on a validation set using the {dataset} dataset to predict {target}?

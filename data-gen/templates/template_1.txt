@@ -22,3 +22,5 @@ model.save_model("catboost_model.cbm")
 ### DESCRIPTION TEMPLATE ###
 This example demonstrates basic training and saving of a CatBoost model on the {dataset} dataset, predicting the {target} variable using categorical features {cat_features}.
 
+### QUERY TEMPLATE ###
+How do you perform basic training and save a CatBoost model on the {dataset} dataset, predicting the {target} variable using categorical features {cat_features}?

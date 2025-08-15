@@ -26,3 +26,5 @@ print(f"Mean Squared Error: {mse}")
 ### DESCRIPTION TEMPLATE ###
 This snippet trains a CatBoost model and evaluates it using Mean Squared Error on the {dataset} dataset predicting {target}.
 
+### QUERY TEMPLATE ###
+How do you train a CatBoost model on the {dataset} dataset to predict {target} and evaluate it using Mean Squared Error?
