@@ -22,10 +22,10 @@ This phase generates pairwise preference data to train a reward model for instru
 
 In this stage, a Reward Model (RM) is trained using the preference pairs generated earlier. The dataset consists of triplets: a prompt, a “chosen” answer (preferred), and a “rejected” answer (less preferred). A pretrained base encoder (e.g., bert-base-uncased) is fine-tuned to assign a scalar reward score to each answer. Training uses a pairwise loss function of the form `-log σ(r_chosen − r_rejected)`, which encourages the model to give higher scores to preferred answers compared to rejected ones. This setup aligns the model’s scoring function with human-like or heuristic preferences. The process includes splitting data into training and validation sets, optimizing with AdamW, and monitoring both loss and validation accuracy. After each epoch, checkpoints are saved, and a log file tracks progress. The trained reward model becomes a crucial evaluator for reinforcement learning or direct preference optimization steps that follow.
 
-### Fine-tuning LLM with PPO and Feedback from Reward Model
+### Fine-tuning the RAG Generator Model (LLM) with PPO and Feedback from Reward Model
 
 <p align="center">
-<img src="figs/Screenshot from 2025-08-26 23-52-56.png" alt="RAG pipeline workflow" width="800"/>
+<img src="figs/Screenshot from 2025-08-27 00-04-53.png" alt="RAG pipeline workflow" width="800"/>
 </p>
 
 In this phase, the policy model (Mistral-7B-Instruct) is fine-tuned using Proximal Policy Optimization (PPO) with guidance from the Reward Model trained on synthetic preference data. Instead of relying on direct human annotations, the system uses heuristic-based rankings (context grounding, keyword coverage, and length penalty) to generate “chosen vs. rejected” pairs. These pairs allow the Reward Model to provide scalar rewards for policy outputs. During training, a frozen reference model is maintained to constrain policy updates and prevent instability. The pipeline samples prompts, generates candidate responses from the policy, scores them with the Reward Model, and updates the policy to maximize expected reward while staying close to the reference. This approach is an instance of Reinforcement Learning with AI Feedback (RLAIF), where synthetic preferences stand in for human judgments, enabling scalable alignment without manual labeling.
