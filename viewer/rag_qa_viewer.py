@@ -4,7 +4,7 @@ import json
 app = Flask(__name__)
 
 # Load data from JSON file
-with open("data.json", "r") as f:
+with open("output/data.json", "r") as f:
     samples = {entry["id"]: entry for entry in json.load(f)}
 
 TEMPLATE = """
