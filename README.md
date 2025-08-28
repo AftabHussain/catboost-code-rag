@@ -25,7 +25,7 @@ This script performs a full RAG query using the Mistral-7B-Instruct model and sa
 Launch the Flask web app to browse the saved QA pairs:
 
 ```bash
-python app.py
+python viewer/rag_qa_viewer.py
 ```
 The web app provides an interactive interface to navigate through your question-answer samples, displaying the context, question, and model-generated answers in a clean format.
 
