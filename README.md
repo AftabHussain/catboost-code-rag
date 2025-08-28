@@ -10,7 +10,7 @@ See [here](https://github.com/AftabHussain/catboost-code-rag/blob/main/README.md
 
 ## Usage
 
-### Query the Model
+### Query the Model on Server
 
 Run the retrieval-augmented generation pipeline with Mistral:
 
@@ -18,9 +18,51 @@ Run the retrieval-augmented generation pipeline with Mistral:
 python rag_query_pipeline_mistral_prompt.py
 ```
 
+___
+
+### Query the Model from Client Using FastAPI
+
 This script performs a full RAG query using the Mistral-7B-Instruct model and saves the question, context, and answer to the dataset.
 
-### View Results
+1. Additional prequisites for Dynamic RAG Viewer 
+
+```
+pip install fastapi uvicorn pydantic
+```
+
+2. Run the live viewer in the server on say port 8000 as follows:
+
+```
+$cd viewer && uvicorn live_rag_qa_viewer:app --host 0.0.0.0 --port 8000
+```
+
+You'll see the following on your screen, which indicates the FastAPI application is running:
+
+```
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:00<00:00, 55.04it/s]
+Device set to use cuda:0
+INFO:     Started server process [2657441]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+```
+
+3. Then connect your client machine to the port of the server where the app is running. We use SSH tunnel here:
+
+```
+ssh -L 8000:127.0.0.1:8000 username@server_address
+```
+
+4. Then in another terminal window in your client machine, run the client app provided in the viewer folder as follows:
+
+```
+python3 rag_client.py
+```
+You are now able to remotely send queries to the model, and receive its responses.
+
+_____
+
+### View Saved Results from Client Machine Using Flask
 
 Launch the Flask web app to browse the saved QA pairs:
 
@@ -32,7 +74,6 @@ The web app provides an interactive interface to navigate through your question-
 #### Example
 
 <img width="2366" height="928" alt="Screenshot from 2025-07-31 18-57-09" src="https://github.com/user-attachments/assets/c4be6ee3-2bd0-4a57-ac34-21c7226189df" />
-
 
 #### Accessing the Web App Remotely
 
