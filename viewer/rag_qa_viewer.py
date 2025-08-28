@@ -1,10 +1,20 @@
+"""
+A lightweight Flask App that provides a local web dashboard for reviewing your
+Mistral+RAG results.
+
+- Loads all QA samples from a JSON file.
+- Lets you browse each sample via a web interface, with simple navigation, and a dropdown.
+- Shows question, retrieved context, and answer in a clean, navigable page.
+
+"""
+
 from flask import Flask, render_template_string, abort
 import json
 
 app = Flask(__name__)
 
 # Load data from JSON file
-with open("output/data.json", "r") as f:
+with open("../output/data.json", "r") as f:
     samples = {entry["id"]: entry for entry in json.load(f)}
 
 TEMPLATE = """
