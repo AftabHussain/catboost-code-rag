@@ -76,6 +76,57 @@ pip install langchain langchain-community langchain-huggingface \
             transformers sentence-transformers faiss-cpu flask torch
 ```
 
+## About Catboost
+
+CatBoost is a gradient boosting library developed by Yan-
+dex [1] that is widely used for machine learning tasks such as
+classification, regression, and ranking. It is particularly known
+for handling categorical features efficiently without requiring
+extensive preprocessing, which makes it very convenient in
+real-world datasets across various domains including healthcare,
+housing, environmental science, etc. [2], [3], [4], [5], [6], [7]
+
+#### References
+
+[1] L. Prokhorenkova, G. Gusev, A. Vorobev, A. V. Dorogush, and A. Gulin,
+“Catboost: unbiased boosting with categorical features,” in Proceedings
+of the 32nd International Conference on Neural Information Processing
+Systems, ser. NIPS’18. Red Hook, NY, USA: Curran Associates Inc.,
+2018, p. 6639–6649.
+
+[2] S. Shao, B. Zhao, X. Cui, Y. Dai, and B. Bao, “Housing rental information
+management and prediction system based on catboost algorithm - a case
+study of halifax region,” in Rough Sets: International Joint Conference,
+IJCRS 2024, Halifax, NS, Canada, May 17–20, 2024, Proceedings, Part
+II. Berlin, Heidelberg: Springer-Verlag, 2024, p. 230–246. [Online].
+Available: https://doi.org/10.1007/978-3-031-65668-2_16
+
+[3] C. Zou, “The house price prediction using machine learning algorithm: The
+case of jinan, china,” Highlights in Science, Engineering and Technology,
+vol. 39, pp. 327–333, 04 2023.
+
+[4] J. T. Hancock and T. M. Khoshgoftaar, “Catboost for big data: an
+interdisciplinary review,” Journal of Big Data, vol. 7, no. 1, p. 94, 2020.
+[Online]. Available: https://doi.org/10.1186/s40537-020-00369-8
+
+[5] X. Jin, W. Sun, Y. Li, Y. Su, L. Xu, and X. Zhu, “Use of catboost
+algorithm to identify the need for surgery in infants with necrotizing
+enterocolitis,” Frontiers in Pediatrics, vol. 13, p. 1465278, Feb. 2025.
+[Online]. Available: https://doi.org/10.3389/fped.2025.1465278
+
+[6] M. Hamid, F. Hajjej, A. S. Alluhaidan, and N. W. bin Mannie,
+“Fine tuned catboost machine learning approach for early detection
+of cardiovascular disease through predictive modeling,” Scientific
+Reports, vol. 15, no. 1, p. 31199, Aug. 2025. [Online]. Available:
+https://doi.org/10.1038/s41598-025-13790-x
+
+[7] Z. Guo, X. Wang, and L. Ge, “Classification prediction model of
+indoor pm2.5 concentration using catboost algorithm,” Frontiers in
+Built Environment, vol. 9, p. 1207193, 2023. [Online]. Available:
+https://doi.org/10.3389/fbuil.2023.1207193
+
+
+
 
 
 
