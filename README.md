@@ -22,8 +22,6 @@ ___
 
 ### Query the Model from Client Using FastAPI
 
-This script performs a full RAG query using the Mistral-7B-Instruct model and saves the question, context, and answer to the dataset.
-
 1. Additional prequisites for Dynamic RAG Viewer 
 
 ```
