@@ -8,7 +8,7 @@ Results are stored in JSON format and presented through an interactive Flask web
 
 See [here](https://github.com/AftabHussain/catboost-code-rag/blob/main/README.md#example) for an example.
 
-## Usage
+## Quick Start / Using the Model
 
 ### Query the Model on Server
 
@@ -79,6 +79,42 @@ From your local machine, create an SSH tunnel to securely access the app running
 ssh -L 5000:localhost:5000 user@server_address
 ```
 Then open `http://localhost:5000` in your browser to interact with the app.
+
+## Running the RAG Reward Model & PPO Pipeline
+
+This document describes the full workflow for building a reward model and training a language model using reinforcement learning with the reward model.
+
+### Step 1: Build Pairwise Preference Dataset
+
+```
+python3 RL_build_pairwise_prefs.py
+```
+
+Generates a dataset of pairwise preferences from model outputs. These pairwise comparisons are used to teach the reward model which outputs are better or preferred.
+
+### Step 2: Train the Reward Model
+
+```
+python3 RL_train_reward_model_pairwise.py
+```
+
+Trains a reward model using the pairwise preference dataset created in Step 1. This reward model will later provide feedback during reinforcement learning to guide the main model’s behavior.
+
+### Step 3: Train the Language Model with PPO
+
+```
+wandb login
+python3 RL_ppo_train_with_reward.py
+```
+
+Uses Proximal Policy Optimization (PPO) to fine-tune the language model guided by the trained reward model. `wandb login` ensures your training logs and metrics are recorded on Weights & Biases for live monitoring. After starting the training, you can check the W&B dashboard to see live metrics, reward scores, and model performance.
+
+✅ Following these three steps in order will allow you to:
+
+1. Generate a preference dataset,
+2. Train a reward model, and
+3. Fine-tune your main model with reinforcement learning while monitoring progress live.
+
 
 ## About the Dataset
 
