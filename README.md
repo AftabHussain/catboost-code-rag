@@ -18,7 +18,6 @@ Run the retrieval-augmented generation pipeline with Mistral:
 python rag_query_pipeline_mistral_prompt.py
 ```
 
-___
 
 ### Query the Model from Client Using FastAPI
 
