@@ -1,5 +1,28 @@
 # CodeContext Explorer: CatBoost Code Explanation with RAG on Zillow Data
 
+## Contents
+
+- [Intro](#intro)
+
+- [Quick Start / Using the Model](#quick-start--using-the-model)
+  - [Query the Model on Server](#query-the-model-on-server)
+  - [Query the Model from Client Using FastAPI](#query-the-model-from-client-using-fastapi)
+  - [View Saved Results from Client Machine Using Flask](#view-saved-results-from-client-machine-using-flask)
+    - [Example](#example)
+    - [Accessing the Web App Remotely](#accessing-the-web-app-remotely)
+
+- [Running the RAG Reward Model & PPO Pipeline](#running-the-rag-reward-model--ppo-pipeline)
+  - [Step 1: Build Pairwise Preference Dataset](#step-1-build-pairwise-preference-dataset)
+  - [Step 2: Train the Reward Model](#step-2-train-the-reward-model)
+  - [Step 3: Train the Language Model with PPO](#step-3-train-the-language-model-with-ppo)
+
+- [About the Dataset](#about-the-dataset)
+- [Dependencies](#dependencies)
+- [About Catboost](#about-catboost)
+
+
+## Intro
+
 In this exploratory work, a Retrieval-Augmented Generation (RAG) system, **CodeContext Explorer**, is built to **provide code explanations** aimed at demonstrating the **potential of combining RAG techniques with domain-specific code context**. In this work, housing-data-related code is picked, in particular CatBoost code snippets applied to housing datasets (e.g. Zillow). CodeContext Explorer enables users to query contextualized code examples and their descriptions, supporting better understanding and usage of CatBoost in real estate modeling tasks. 
 
 The system relies upon synthetically created CatBoost code samples, used in the domain of housing data, with descriptive annotations. Using vector embeddings and a FAISS index, it retrieves the most relevant code-context pairs in response to user queries. These retrieved contexts are passed to the Mistral-7B-Instruct language model with custom prompts to generate explanations. 
