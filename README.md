@@ -15,7 +15,7 @@ See [here](https://github.com/AftabHussain/catboost-code-rag/blob/main/README.md
 Run the retrieval-augmented generation pipeline with Mistral:
 
 ```bash
-python rag_query_pipeline_mistral_prompt.py
+python rag_mistral_single_ip.py
 ```
 
 
