@@ -83,11 +83,26 @@ print(f"[INFO] Reward model outputs {num_labels} label(s).")
 # ---------------------------------------------------------
 # 3. PPO Trainer
 # ---------------------------------------------------------
+
+# Monitoring with Weights & Biases
+import wandb
+
+wandb.init(
+    project="ppo-mistral-reward-tuning",
+    config={
+        "policy_model": policy_model_name,
+        "reward_model": reward_model_name,
+        "batch_size": 2,
+        "learning_rate": 1e-5,
+        "quantization": "4-bit-nf4",
+    }
+)
+
 ppo_config = PPOConfig(
     batch_size=2,
     mini_batch_size=1,
     learning_rate=1e-5,
-    log_with=None
+    log_with="wandb"
 )
 
 ppo_trainer = PPOTrainer(
@@ -114,8 +129,11 @@ print(f"Extracted {len(prompts)} prompts")
 loader = DataLoader(prompts, batch_size=ppo_config.batch_size, shuffle=True)
 
 for step, prompt_batch in enumerate(loader):
-    if step >= 3:  # demo: just 3 steps
+    if step >= 10:  # demo: just 10 steps
         break
+
+    # Guidance on num of steps to use:
+    # https://chatgpt.com/share/68b6d7dd-2664-8002-babf-96158c1874cc
 
     # Tokenize this batch of prompts
     batch = reward_tokenizer(prompt_batch, return_tensors="pt", padding=True, truncation=True)
@@ -155,6 +173,22 @@ for step, prompt_batch in enumerate(loader):
     stats = ppo_trainer.step(queries, responses_list, rewards_list)
 
     print(f"[STEP {step}] Rewards: {rewards.tolist()} | PPO Stats: {stats}")
+
+    # log metrics to W&B
+    wandb.log({
+        "step": step,
+        "reward_mean": torch.mean(rewards).item(),
+        "reward_std": torch.std(rewards).item(),
+        "ppo/value_loss": stats["ppo/loss/value"],
+        "ppo/policy_loss": stats["ppo/loss/total"],
+        "ppo/kl": stats["ppo/policy/policykl"],
+        "ppo/entropy": stats["ppo/policy/entropy"],
+    })
+
+    # optional: log sample generations
+    wandb.log({"samples": wandb.Table(columns=["prompt", "response"], 
+        data=[[prompt_batch[i], responses[i]] for i in range(len(responses))])})
+
 
 #PLUGIN-- save the model
 print("✅ PPO demo finished")
