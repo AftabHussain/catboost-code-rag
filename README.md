@@ -181,7 +181,7 @@ classification, regression, and ranking. It is particularly known
 for handling categorical features efficiently without requiring
 extensive preprocessing, which makes it very convenient in
 real-world datasets across various domains including healthcare,
-housing, environmental science, etc. [2], [3], [4], [5], [6], [7]
+housing, environmental science, etc. [2-7].
 
 #### References
 
