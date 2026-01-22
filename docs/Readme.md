@@ -16,7 +16,7 @@ This project implements a Retrieval-Augmented Generation (RAG) pipeline for answ
 
 When a user submits a query, the pipeline first retrieves the most relevant context from the vectorstore using semantic similarity. This context is then inserted into a structured instruction-style prompt, which is fed to the LLM to generate an answer. The system parses the output into context, question, and answer components and logs each interaction in a JSON dataset for future reference. This approach allows efficient querying over large datasets.
 
-
+> [_Query using a gold dataset, and save results_](https://github.com/AftabHussain/catboost-code-rag/blob/32c42c7d4325e82126556f7b8024a359b33224ca/rag_mistral_batch_ip.py#L70C38-L122C14)
 
 ### RAG LLM Optimization Phase 1: Pairwaise Pairs Dataset Generation for Training Reward Model
 
