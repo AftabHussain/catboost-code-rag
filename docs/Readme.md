@@ -8,7 +8,11 @@
 
 This project implements a Retrieval-Augmented Generation (RAG) pipeline for answering domain-specific questions using a large language model (LLM). It combines a precomputed FAISS vectorstore of embeddings with a Generator Model (i.e., the LLM) to provide accurate and context-aware responses. 
 
-- [_Code for FAISS vectorstore generation_](https://github.com/AftabHussain/catboost-code-rag/blob/99819f177eff99837373b949db9c1ba4dac2f086/data-gen/gen_db.py#L21-L34)
+> [_FAISS vectorstore generation_](https://github.com/AftabHussain/catboost-code-rag/blob/99819f177eff99837373b949db9c1ba4dac2f086/data-gen/gen_db.py#L21-L34)
+> 
+> [_Loading the vectorstore and model in the RAG pipeline_](https://github.com/AftabHussain/catboost-code-rag/blob/99819f177eff99837373b949db9c1ba4dac2f086/rag_mistral_batch_ip.py#L11-L41)
+> 
+> [_Setting up the prompt template and QA chain using LangChain_](https://github.com/AftabHussain/catboost-code-rag/blob/32c42c7d4325e82126556f7b8024a359b33224ca/rag_mistral_batch_ip.py#L43-L66)
 
 When a user submits a query, the pipeline first retrieves the most relevant context from the vectorstore using semantic similarity. This context is then inserted into a structured instruction-style prompt, which is fed to the LLM to generate an answer. The system parses the output into context, question, and answer components and logs each interaction in a JSON dataset for future reference. This approach allows efficient querying over large datasets.
 
