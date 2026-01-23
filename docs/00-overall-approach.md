@@ -74,4 +74,18 @@ The trained reward model becomes a crucial evaluator for reinforcement learning 
 <img src="figs/Screenshot from 2025-08-27 00-04-53.png" alt="RAG pipeline workflow" width="800"/>
 </p>
 
-In this phase, the policy model (Mistral-7B-Instruct) is fine-tuned using Proximal Policy Optimization (PPO) with guidance from the Reward Model trained on synthetic preference data. Instead of relying on direct human annotations, the system uses heuristic-based rankings (context grounding, keyword coverage, and length penalty) to generate “chosen vs. rejected” pairs. These pairs allow the Reward Model to provide scalar rewards for policy outputs. During training, a frozen reference model is maintained to constrain policy updates and prevent instability. The pipeline samples prompts, generates candidate responses from the policy, scores them with the Reward Model, and updates the policy to maximize expected reward while staying close to the reference. This approach is an instance of Reinforcement Learning with AI Feedback (RLAIF), where synthetic preferences stand in for human judgments, enabling scalable alignment without manual labeling.
+In this phase, the policy model (Mistral-7B-Instruct), the main RAG model we want to optimize, is fine-tuned using Proximal Policy Optimization (PPO) with guidance from the reward model trained on synthetic preference data. 
+
+In addition, during training, a frozen reference model is maintained to constrain policy updates and prevent instability. 
+
+> [_Instantiation of the Policy Model (The RAG Model to be optimized)_](https://github.com/AftabHussain/catboost-code-rag/blob/7b0a07121535f8f52245944c1c44d062b389ad8a/RL_ppo_train_with_reward.py#L18-L35)
+>
+> [_Instantiation of the Reference Model (To be used as a frozen copy of the above model)_](https://github.com/AftabHussain/catboost-code-rag/blob/7b0a07121535f8f52245944c1c44d062b389ad8a/RL_ppo_train_with_reward.py#L46-L53)
+>
+> [_Instantiation of the Reward Model_](https://github.com/AftabHussain/catboost-code-rag/blob/7b0a07121535f8f52245944c1c44d062b389ad8a/RL_ppo_train_with_reward.py#L73-L78)
+
+Instead of relying on direct human annotations, the system uses heuristic-based rankings (context grounding, keyword coverage, and length penalty) to generate “chosen vs. rejected” pairs. These pairs allow the reward model to provide scalar rewards for policy outputs. 
+
+The pipeline samples prompts, generates candidate responses from the policy, scores them with the reward model, and updates the policy to maximize expected reward while staying close to the reference. 
+
+In this approach, we utilize Reinforcement Learning with AI Feedback (RLAIF), where synthetic preferences stand in for human judgments, enabling scalable alignment without manual labeling.
