@@ -1,4 +1,4 @@
-# file: ppo_train_with_reward.py
+# file: RL_ppo_train_with_reward.py
 import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from trl import AutoModelForCausalLMWithValueHead, PPOTrainer, PPOConfig
