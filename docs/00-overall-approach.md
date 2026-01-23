@@ -1,6 +1,6 @@
-## Key Methodology Components
+# Overall Approach
 
-### Main Use Case: Using the RAG Pipeline
+## Main Use Case: Using the RAG Pipeline
 
 <p align="center">
 <img src="figs/Screenshot%20from%202025-08-26%2023-42-58.png" alt="RAG pipeline workflow" width="800"/>
@@ -24,7 +24,9 @@ This approach allows efficient querying over large datasets.
 
 > [_Query using a gold dataset, and save results_](https://github.com/AftabHussain/catboost-code-rag/blob/32c42c7d4325e82126556f7b8024a359b33224ca/rag_mistral_batch_ip.py#L70C38-L122C14)
 
-### RAG LLM Optimization Phase 1: Pairwaise Pairs Dataset Generation for Training Reward Model
+## RAG LLM Optimization 
+
+### Phase 1: Pairwaise Pairs Dataset Generation for Training Reward Model
 
 <p align="center">
 <img src="figs/Screenshot from 2025-08-26 23-52-56.png" alt="RAG pipeline workflow" width="800"/>
@@ -46,7 +48,7 @@ The top-scoring candidate is marked as “chosen” and the lowest-scoring candi
 
 This approach ensures that the reward model learns to prefer outputs that are both contextually grounded and relevant to the task.
 
-### RAG LLM Optimization Phase 2: Training a Pairwise Reward Model
+### Phase 2: Training a Pairwise Reward Model
 
 In this stage, a Reward Model (RM) is trained using the preference pairs generated earlier. 
 
@@ -66,7 +68,7 @@ The process includes splitting data into training and validation sets, optimizin
 
 The trained reward model becomes a crucial evaluator for reinforcement learning or direct preference optimization steps that follow.
 
-### Fine-tuning the RAG Generator Model (LLM) with PPO and Feedback from Reward Model
+### Phase 3: Fine-tuning the RAG Generator Model (LLM) with PPO and Feedback from Reward Model
 
 <p align="center">
 <img src="figs/Screenshot from 2025-08-27 00-04-53.png" alt="RAG pipeline workflow" width="800"/>
