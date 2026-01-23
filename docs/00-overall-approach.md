@@ -18,7 +18,9 @@ When a user submits a query, the pipeline first retrieves the most relevant cont
 
 >[_Retrieval of context using semantic similarity using LangChain's RetrievalQA_](https://github.com/AftabHussain/catboost-code-rag/blob/77d0b5e9de43ecb25a2ab248101ae6f0b4d95026/rag_mistral_batch_ip.py#L97)
 
-This context is then inserted into a structured instruction-style prompt, which is fed to the LLM to generate an answer. The system parses the output into context, question, and answer components and logs each interaction in a JSON dataset for future reference. This approach allows efficient querying over large datasets.
+This context is then inserted into a structured instruction-style prompt, which is fed to the LLM to generate an answer. The system parses the output into context, question, and answer components and logs each interaction in a JSON dataset for future reference. 
+
+This approach allows efficient querying over large datasets.
 
 > [_Query using a gold dataset, and save results_](https://github.com/AftabHussain/catboost-code-rag/blob/32c42c7d4325e82126556f7b8024a359b33224ca/rag_mistral_batch_ip.py#L70C38-L122C14)
 
@@ -28,7 +30,11 @@ This context is then inserted into a structured instruction-style prompt, which 
 <img src="figs/Screenshot from 2025-08-26 23-52-56.png" alt="RAG pipeline workflow" width="800"/>
 </p>
 
-This phase generates pairwise preference data to train a reward model for instruction-following or code-related tasks. For each query in the dataset, the process first retrieves relevant context from a precomputed FAISS vectorstore. A structured prompt is constructed combining the retrieved context and the query, which is then passed to a generative language model (Mistral-7B-Instruct) to produce multiple candidate answers. 
+This phase generates pairwise preference data to train a reward model for instruction-following or code-related tasks. 
+
+For each query in the dataset, the process first retrieves relevant context from a precomputed FAISS vectorstore. 
+
+A structured prompt is constructed combining the retrieved context and the query, which is then passed to a generative language model (Mistral-7B-Instruct) to produce multiple candidate answers. 
 
 > [_Generation of multiple candidates_](https://github.com/AftabHussain/catboost-code-rag/blob/77d0b5e9de43ecb25a2ab248101ae6f0b4d95026/RL_build_pairwise_prefs.py#L97)
 
@@ -42,7 +48,23 @@ This approach ensures that the reward model learns to prefer outputs that are bo
 
 ### RAG LLM Optimization Phase 2: Training a Pairwise Reward Model
 
-In this stage, a Reward Model (RM) is trained using the preference pairs generated earlier. The dataset consists of triplets: a prompt, a “chosen” answer (preferred), and a “rejected” answer (less preferred). A pretrained base encoder (e.g., bert-base-uncased) is fine-tuned to assign a scalar reward score to each answer. Training uses a pairwise loss function of the form `-log σ(r_chosen − r_rejected)`, which encourages the model to give higher scores to preferred answers compared to rejected ones. This setup aligns the model’s scoring function with human-like or heuristic preferences. The process includes splitting data into training and validation sets, optimizing with AdamW, and monitoring both loss and validation accuracy. After each epoch, checkpoints are saved, and a log file tracks progress. The trained reward model becomes a crucial evaluator for reinforcement learning or direct preference optimization steps that follow.
+In this stage, a Reward Model (RM) is trained using the preference pairs generated earlier. 
+
+The dataset consists of triplets: a prompt, a “chosen” answer (preferred), and a “rejected” answer (less preferred). 
+
+A pretrained base encoder (e.g., bert-base-uncased) is fine-tuned to assign a scalar reward score to each answer. 
+
+> [_Model and data selection_](https://github.com/AftabHussain/catboost-code-rag/blob/5d921ef669bf5a1c125f95d01f998ce7ccacfda5/RL_train_reward_model_pairwise.py#L20-L21)
+
+Training uses a pairwise loss function of the form `-log σ(r_chosen − r_rejected)`, which encourages the model to give higher scores to preferred answers compared to rejected ones. This setup aligns the model’s scoring function with human-like or heuristic preferences. 
+
+> [_Training loop_](https://github.com/AftabHussain/catboost-code-rag/blob/5d921ef669bf5a1c125f95d01f998ce7ccacfda5/RL_train_reward_model_pairwise.py#L99-L119)
+
+The process includes splitting data into training and validation sets, optimizing with AdamW, and monitoring both loss and validation accuracy. After each epoch, checkpoints are saved, and a log file tracks progress. 
+
+> [_Validation_](https://github.com/AftabHussain/catboost-code-rag/blob/5d921ef669bf5a1c125f95d01f998ce7ccacfda5/RL_train_reward_model_pairwise.py#L124-L144)
+
+The trained reward model becomes a crucial evaluator for reinforcement learning or direct preference optimization steps that follow.
 
 ### Fine-tuning the RAG Generator Model (LLM) with PPO and Feedback from Reward Model
 
