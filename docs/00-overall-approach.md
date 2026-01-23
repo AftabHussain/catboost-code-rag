@@ -14,7 +14,11 @@ This project implements a Retrieval-Augmented Generation (RAG) pipeline for answ
 > 
 > [_Setting up the prompt template and QA chain using LangChain_](https://github.com/AftabHussain/catboost-code-rag/blob/32c42c7d4325e82126556f7b8024a359b33224ca/rag_mistral_batch_ip.py#L43-L66)
 
-When a user submits a query, the pipeline first retrieves the most relevant context from the vectorstore using semantic similarity. This context is then inserted into a structured instruction-style prompt, which is fed to the LLM to generate an answer. The system parses the output into context, question, and answer components and logs each interaction in a JSON dataset for future reference. This approach allows efficient querying over large datasets.
+When a user submits a query, the pipeline first retrieves the most relevant context from the vectorstore using semantic similarity. 
+
+>[Retrieval of context using semantic similarity using LangChain's RetrievalQA](https://github.com/AftabHussain/catboost-code-rag/blob/77d0b5e9de43ecb25a2ab248101ae6f0b4d95026/rag_mistral_batch_ip.py#L97)
+
+This context is then inserted into a structured instruction-style prompt, which is fed to the LLM to generate an answer. The system parses the output into context, question, and answer components and logs each interaction in a JSON dataset for future reference. This approach allows efficient querying over large datasets.
 
 > [_Query using a gold dataset, and save results_](https://github.com/AftabHussain/catboost-code-rag/blob/32c42c7d4325e82126556f7b8024a359b33224ca/rag_mistral_batch_ip.py#L70C38-L122C14)
 
@@ -24,7 +28,17 @@ When a user submits a query, the pipeline first retrieves the most relevant cont
 <img src="figs/Screenshot from 2025-08-26 23-52-56.png" alt="RAG pipeline workflow" width="800"/>
 </p>
 
-This phase generates pairwise preference data to train a reward model for instruction-following or code-related tasks. For each query in the dataset, the process first retrieves relevant context from a precomputed FAISS vectorstore. A structured prompt is constructed combining the retrieved context and the query, which is then passed to a generative language model (Mistral-7B-Instruct) to produce multiple candidate answers. Each candidate is scored using a heuristic ranking system that combines: (1) similarity to the retrieved context (“grounding score”), (2) coverage of task-relevant keywords, and (3) a mild length penalty to discourage overly verbose answers. The top-scoring candidate is marked as “chosen” and the lowest-scoring candidate as “rejected,” forming a pair. These prompt–chosen–rejected triples are saved in a JSONL file (pairwise_prefs.jsonl) and provide training data for reward models that can later guide preference-aligned generation. This approach ensures that the reward model learns to prefer outputs that are both contextually grounded and relevant to the task.
+This phase generates pairwise preference data to train a reward model for instruction-following or code-related tasks. For each query in the dataset, the process first retrieves relevant context from a precomputed FAISS vectorstore. A structured prompt is constructed combining the retrieved context and the query, which is then passed to a generative language model (Mistral-7B-Instruct) to produce multiple candidate answers. 
+
+> [_Generation of multiple candidates_](https://github.com/AftabHussain/catboost-code-rag/blob/77d0b5e9de43ecb25a2ab248101ae6f0b4d95026/RL_build_pairwise_prefs.py#L97)
+
+Each candidate is scored using a heuristic ranking system that combines: (1) similarity to the retrieved context (“grounding score”), (2) coverage of task-relevant keywords, and (3) a mild length penalty to discourage overly verbose answers. 
+
+> [_Candidate scoring function_](https://github.com/AftabHussain/catboost-code-rag/blob/77d0b5e9de43ecb25a2ab248101ae6f0b4d95026/RL_build_pairwise_prefs.py#L192)
+
+The top-scoring candidate is marked as “chosen” and the lowest-scoring candidate as “rejected,” forming a pair. These prompt–chosen–rejected triples are saved in a JSONL file (pairwise_prefs.jsonl) and provide training data for reward models that can later guide preference-aligned generation. 
+
+This approach ensures that the reward model learns to prefer outputs that are both contextually grounded and relevant to the task.
 
 ### RAG LLM Optimization Phase 2: Training a Pairwise Reward Model
 
