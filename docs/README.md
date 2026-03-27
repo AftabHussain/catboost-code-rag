@@ -48,6 +48,8 @@ The top-scoring candidate is marked as “chosen” and the lowest-scoring candi
 
 This approach ensures that the reward model learns to prefer outputs that are both contextually grounded and relevant to the task.
 
+[**See more details of the implementation of this phase...**](./01-pairwise-pref-generation.pdf)
+
 ### Phase 2: Training a Pairwise Reward Model
 
 In this stage, a Reward Model (RM) is trained using the preference pairs generated earlier. 
@@ -67,6 +69,8 @@ The process includes splitting data into training and validation sets, optimizin
 > [_Validation_](https://github.com/AftabHussain/catboost-code-rag/blob/5d921ef669bf5a1c125f95d01f998ce7ccacfda5/RL_train_reward_model_pairwise.py#L124-L144)
 
 The trained reward model becomes a crucial evaluator for reinforcement learning or direct preference optimization steps that follow.
+
+[**See more details of the implementation of this phase...**](./02-pairwise-reward-model-training.pdf)
 
 ### Phase 3: Fine-tuning the RAG Generator Model (LLM) with PPO and Feedback from Reward Model
 
@@ -89,3 +93,5 @@ Instead of relying on direct human annotations, the system uses heuristic-based 
 The pipeline samples prompts, generates candidate responses from the policy, scores them with the reward model, and updates the policy to maximize expected reward while staying close to the reference. 
 
 In this approach, we utilize Reinforcement Learning with AI Feedback (RLAIF), where synthetic preferences stand in for human judgments, enabling scalable alignment without manual labeling.
+
+[**See more details of the implementation of this phase...**](./03-ppo-training-with-reward-model.pdf)
