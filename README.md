@@ -16,6 +16,7 @@
   - [Step 2: Train the Reward Model](#step-2-train-the-reward-model)
   - [Step 3: Train the Language Model with PPO](#step-3-train-the-language-model-with-ppo)
 
+- [Details about the Approach](./docs)
 - [About the Dataset](#about-the-dataset)
 - [Dependencies](#dependencies)
 - [About Catboost](#about-catboost)
